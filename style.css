@@ -1,0 +1,142 @@
+/* 全局样式 */
+body {
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(to bottom, #87CEEB, #E6E6FA);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.game-container {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* 控制面板 */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 8px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+button {
+    padding: 8px 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+input[type="number"], input[type="range"] {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.warning.show {
+    opacity: 1;
+    animation: shakeWarning 0.5s ease-in-out;
+}
+
+/* 棋盘与钉子 */
+.board {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    background: rgba(139, 90, 43, 0.3);
+    border-radius: 8px;
+    position: relative;
+    perspective: 800px;
+}
+
+.peg {
+    width: 20px;
+    height: 220px;
+    background: linear-gradient(to right, #8B4513, #D2B48C, #8B4513);
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transform-style: preserve-3d;
+}
+
+.peg::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 80px;
+    height: 10px;
+    background: linear-gradient(to bottom, #D2B48C, #8B4513);
+    border-radius: 4px;
+}
+
+/* 圆盘样式（宽度与大小成正比，3D效果） */
+.disk {
+    height: 25px;
+    border-radius: 12px;
+    margin: 2px 0;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #ffcc00, #ff9900);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4);
+    transform: translateZ(10px);
+    transition: transform 0.2s;
+}
+
+.disk:hover {
+    transform: translateZ(20px);
+}
+
+/* 关键帧动画 */
+@keyframes shakeWarning {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes glowWin {
+    0%, 100% { box-shadow: 0 0 10px gold; }
+    50% { box-shadow: 0 0 30px gold, 0 0 60px orange; }
+}
+
+.victory .disk {
+    animation: glowWin 1s ease-in-out infinite;
+}
