@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河内塔3D游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>河内塔 3D</h1>
+
+        <!-- 控制面板 -->
+        <div class="controls">
+            <div class="control-group">
+                <label for="diskCount">圆盘数量：</label>
+                <input type="number" id="diskCount" min="3" max="8" value="3">
+                <input type="range" id="diskSlider" min="3" max="8" value="3">
+            </div>
+            <div class="control-group">
+                <button id="resetBtn">重置</button>
+                <button id="autoSolveBtn">自动解题</button>
+            </div>
+            <div class="control-group">
+                <span>移动次数：<span id="moveCount">0</span></span>
+                <span id="warningMsg" class="warning"></span>
+            </div>
+        </div>
+
+        <!-- 游戏棋盘 -->
+        <div class="board">
+            <div class="peg" id="pegA" data-peg="0"></div>
+            <div class="peg" id="pegB" data-peg="1"></div>
+            <div class="peg" id="pegC" data-peg="2"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
